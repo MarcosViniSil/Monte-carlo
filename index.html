@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Monte carlo</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+<div class="wrapForms">
+    <form>
+        <label for="value">Valor</label>
+        <input type="number" id="value"> <br>
+
+        <label for="frequency">Frequência</label>
+        <input type="number" id="frequency">
+
+        <button type="button" onclick="addRow()">Salvar</button>
+    </form>
+
+    <form>
+        <label for="tests">Número de testes</label>
+        <input value="100" type="number" id="tests"> <br>
+
+        <button type="button" onclick="modifyMaxRounds()">Alterar</button>
+    </form>
+    </div>
+    <button class="buttonExecute" onclick="monteCarlo()">Executar método monte carlo</button>
+    <div class="results">
+        <h3>Resultados</h3>
+        <p id="sum"></p>
+        <p id="avg"></p>
+    </div>
+    <table id="tableData">
+        <tr>
+            <th>Valor</th>
+            <th>Frequência</th>
+            <th>Ação</th>
+        </tr>
+    </table>
+    
+    <button class="buttonShowTable" onclick="toggleTable()">Mostrar tabela de números aleatórios</button>
+
+
+    <div id="tableArea"></div>
+</body>
+
+<script src="main.js"></script>
+<script src="table.js"></script>
+
+</html>
