@@ -4,6 +4,7 @@ const MIN_RANDOM = 0
 const MAX_RANDOM = 999999
 
 let matrix = []
+let values = []
 
 let isToShowTable = false
 
@@ -118,37 +119,33 @@ function convertFrequencyToRange() {
 
 function monteCarlo() {
     let cutAt = precision > 6 ? 6 : precision
-    generateTableRandomValues()
+    
     convertFrequencyToRange()
     let count = 0;
     sum = 0;
-    for (let k = 0; k < MAX_ROUND; k += COLUMNS * ROWS) {
-        generateTableRandomValues()
         for (let i = 0; i < ROWS; i++) {
             for (let j = 0; j <= COLUMNS; j++) {
+                if (count >= MAX_ROUND) {
+                    document.getElementById("sum").innerHTML = "soma " + sum
+                    document.getElementById("avg").innerHTML = "Média " + (sum / MAX_ROUND).toFixed(3)
+                    break;
+                }
                 const value = parseInt(matrix[i][j].toString().slice(0, cutAt), 10);
 
                 for (const [key, range] of convertedRange.entries()) {
                     const [min, max] = range;
                     if (value >= min && value <= max) {
                         sum += parseFloat(key);
+                        values.push(value)
                         break;
                     }
                 }
 
                 count++;
-                if (count >= MAX_ROUND) {
-                    console.log("Parando após", MAX_ROUND, "iterações");
-                    console.log("Soma parcial:", sum);
-                    console.log("Média final:", sum / MAX_ROUND);
 
-                    document.getElementById("sum").innerHTML = "soma " + sum
-                    document.getElementById("avg").innerHTML = "Média " + (sum / MAX_ROUND).toFixed(3)
-                    return;
-                }
             }
-        }
     }
+    console.log("values ",values)
 }
 
 generateRandomTable()
